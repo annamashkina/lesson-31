@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import {
+        getData,
+        postData,
+        putData,
+        patchData,
+        deleteData,
+      } from "./main.js";
+      getData("/posts")
+        .then((data) => console.log("GET data:", data))
+        .catch((error) => console.log(error));
+      const newPost = {
+        title: "foo",
+        body: "bar",
+        userId: 1,
+      };
+      postData("/posts", newPost)
+        .then((data) => console.log("POST data:", data))
+        .catch((error) => console.log(error));
+      const updatedPost = {
+        id: 1,
+        title: "foo updated",
+        body: "bar updated",
+        userId: 1,
+      };
+      putData(1, updatedPost)
+        .then((data) => console.log("PUT data:", data))
+        .catch((error) => console.log(error));
+      const partialUpdate = {
+        title: "foo partially updated",
+      };
+      patchData(1, partialUpdate)
+        .then((data) => console.log("PATCH data:", data))
+        .catch((error) => console.log(error));
+      deleteData(1)
+        .then((result) => console.log("DELETE result:", result))
+        .catch((error) => console.log(error));
+    </script>
+  </body>
+</html>
